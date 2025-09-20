@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sürdürülebilir Tekstil Dönüşümü</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3b5998;
+            --secondary-color: #8b9dc3;
+            --accent-color: #f7b928;
+            --background-light: #f9fafb;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 6rem 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: pulse 4s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 4rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card .icon {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 1rem;
+        }
+
+        /* Sürdürülebilirlik Bölümü */
+        .sustainability-section {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+        }
+
+        .sustainability-section h2 {
+            color: var(--text-light);
+        }
+
+        .sustainability-content .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .sustainability-content .card h3 {
+            color: var(--primary-color);
+        }
+
+        /* Projeler Bölümü */
+        .projects-section {
+            padding: 4rem 5%;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        /* Ekip Bölümü */
+        .team-section {
+            background-color: var(--background-light);
+        }
+
+        .team-member {
+            background-color: var(--text-light);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--accent-color);
+        }
+        
+        /* İletişim Formu */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--accent-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sürdürülebilir Tekstil</h1>
+        <p>Geleceğe nefes veren tasarımlar ve yenilikçi çözümler.</p>
+    </header>
+
+    <section class="intro">
+        <h2 class="section-heading">Neden Biz?</h2>
+        <div class="content">
+            <div class="card">
+                <i class="fas fa-hand-holding-heart icon"></i>
+                <h3>Etik Üretim</h3>
+                <p>Çalışma koşullarının adil ve güvenli olmasını sağlayarak etik değerlere öncelik veriyoruz.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-magic icon"></i>
+                <h3>Yenilikçi Tasarım</h3>
+                <p>Kumaşların potansiyelini en üst düzeye çıkaran modern ve özgün tasarımlar sunuyoruz.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-globe-americas icon"></i>
+                <h3>Global Etki</h3>
+                <p>Yerel kaynaklarla çalışarak global sürdürülebilirlik hedeflerine katkıda bulunuyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sustainability-section">
+        <h2 class="section-heading">Sürdürülebilir Yaklaşımlarımız</h2>
+        <div class="sustainability-content content">
+            <div class="card">
+                <i class="fas fa-recycle icon"></i>
+                <h3>Döngüsel Ekonomi</h3>
+                <p>Tekstil ürünlerinin yaşam döngüsünü uzatarak atıkları en aza indirir. Geri dönüştürülmüş materyaller kullanarak yeni ürünler yaratırız.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-leaf icon"></i>
+                <h3>Çevre Dostu Üretim</h3>
+                <p>Organik pamuk, kenevir ve bambu gibi doğal kaynakları kullanarak su ve enerji tüketimini azaltır, kimyasal kullanımını sınırlarız.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-seedling icon"></i>
+                <h3>Yenilikçi Malzemeler</h3>
+                <p>Mantar derisi, ananas lifi ve yenilenebilir kaynaklardan elde edilen kumaşlar gibi geleceğin malzemelerini araştırıyor ve kullanıyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <h2 class="section-heading">Projelerimiz</h2>
+        <div class="project-gallery">
+            <div class="project-item">
+                <img src="https://via.placeholder.com/400x300?text=Proje+1" alt="Proje 1">
+                <div class="project-overlay">
+                    <h3>Proje 1</h3>
+                    <p>Geri dönüştürülmüş denimden oluşan koleksiyon.</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://via.placeholder.com/400x300?text=Proje+2" alt="Proje 2">
+                <div class="project-overlay">
+                    <h3>Proje 2</h3>
+                    <p>Organik pamuktan yapılmış minimal tasarımlar.</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://via.placeholder.com/400x300?text=Proje+3" alt="Proje 3">
+                <div class="project-overlay">
+                    <h3>Proje 3</h3>
+                    <p>Deniz yosunundan üretilmiş yenilikçi kumaşlar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2 class="section-heading">Ekibimiz</h2>
+        <div class="content">
+            <div class="team-member card">
+                <img src="https://via.placeholder.com/150?text=İsim+Soyisim" alt="Ekip Üyesi 1">
+                <h3>İsim Soyisim</h3>
+                <p>Kurucu / Sürdürülebilirlik Uzmanı</p>
+            </div>
+            <div class="team-member card">
+                <img src="https://via.placeholder.com/150?text=İsim+Soyisim" alt="Ekip Üyesi 2">
+                <h3>İsim Soyisim</h3>
+                <p>Baş Tasarımcı</p>
+            </div>
+            <div class="team-member card">
+                <img src="https://via.placeholder.com/150?text=İsim+Soyisim" alt="Ekip Üyesi 3">
+                <h3>İsim Soyisim</h3>
+                <p>Proje Yöneticisi</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2 class="section-heading">Bize Ulaşın</h2>
+        <form class="contact-form" action="#" method="POST">
+            <input type="text" name="name" placeholder="Adınız Soyadınız" required>
+            <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+            <textarea name="message" rows="5" placeholder="Mesajınız..." required></textarea>
+            <button type="submit">Gönder</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sürdürülebilir Tekstil. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>
